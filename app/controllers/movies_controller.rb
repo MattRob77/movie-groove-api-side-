@@ -3,17 +3,17 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
 
-    render json: @movie
+    render json: @movies
   end
 
   def show
     @movie = Movie.find(params[:id])
 
-    render json: @movie(movie)
+    render json: @movie
   end
 
   def create
-    @movie = Movie.new(movie_params)
+    @movie = Movie.new (movie_params)
     @movie.user_id = current_user.id
     if @movie.save
       render json: @movie
@@ -25,7 +25,7 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-    @note.update(movie_params)
+    @movie.update(movie_params)
 
       render json: @movie
   end
