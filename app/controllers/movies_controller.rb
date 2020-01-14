@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
     if @movie.save
-      render json: @movie
+      render json: Movies_Serializer.new(movie)
     else
         @movie.build_genre #Build/another word for new object
       render :new
@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @note.update(movie_params)
 
-      render json: @movie
+      render json: Movies_Serializer.new(movie)
   end
 
   def ratings
