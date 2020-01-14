@@ -3,20 +3,20 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
 
-    render json: Movies_Serializer.new(movie)
+    render json: @movie
   end
 
   def show
     @movie = Movie.find(params[:id])
 
-    render json: Movies_Serializer.new(movie)
+    render json: @movie(movie)
   end
 
   def create
     @movie = Movie.new(movie_params)
     @movie.user_id = current_user.id
     if @movie.save
-      render json: Movies_Serializer.new(movie)
+      render json: @movie
     else
         @movie.build_genre #Build/another word for new object
       render :new
@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     @note.update(movie_params)
 
-      render json: Movies_Serializer.new(movie)
+      render json: @movie
   end
 
   def ratings
