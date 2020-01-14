@@ -35,13 +35,14 @@ class MoviesController < ApplicationController
   end
 
   def destroy
-    @movie.destroy
+    @movie = Movie.find(params[:id])
+    @movie.delete
 
-    render json: @movie 
+    render json: {movieId: @movie.id}
   end
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :description, :genre, :rating)
+    params.require(:movie).permit(:title, :description)
   end
 end
