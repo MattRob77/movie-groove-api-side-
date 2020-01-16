@@ -5,6 +5,7 @@ class ReviewsController < ApplicationController
       @reviews = @movie.reviews.all
     else
       render json: @review
+    end
   end
 
   def show
@@ -19,10 +20,41 @@ class ReviewsController < ApplicationController
     if @review.save
       render json:@review
     else
-      @review :new
+      @review :create
   end
 
   def update
+    @review = Review.find(params[:id])
+    @review.update(review_params)
 
-  end 
+      render json: @movie
+  end
+
+  def ratings
+    @movies = Movie.grouped_ratings #gives access to scope method
+  end
+
+  def destroy
+    @review = Review.find(params[:id])
+    @review.delete
+
+    render json: {reviewId: @review.id}
+  end
+
+  private
+  def review_params
+    params.require(:review).permit(:title, :content, :genre, :stars, :movie_id)
+  end
+
 end
+
+
+
+
+
+create_table "reviews", force: :cascade do |t|
+  t.integer "stars"
+  t.string "title"
+  t.string "content"
+  t.integer "user_id"
+  t.integer "movie_id"
