@@ -15,12 +15,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review.Review.new(review_params)
+    @review = Review.new (review_params)
     @review.user_id = current_user.id
     if @review.save
-      render json:@review
+      render json: @review
     else
-      @review :create
+        @review.build_genre #Build/another word for new object
+      render :new
+    end
   end
 
   def update
@@ -47,14 +49,3 @@ class ReviewsController < ApplicationController
   end
 
 end
-
-
-
-
-
-create_table "reviews", force: :cascade do |t|
-  t.integer "stars"
-  t.string "title"
-  t.string "content"
-  t.integer "user_id"
-  t.integer "movie_id"

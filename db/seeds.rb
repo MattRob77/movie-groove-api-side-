@@ -64,3 +64,17 @@ movies = Movie.create([
 }
 ])
 p "Created #{Movie.count} movies"
+
+Review.destroy.all
+review = Review.create([
+  {
+    title: "Ant-Man",
+    content: "Man that is super small like an ant, but funny movie",
+    stars: 3
+  },
+  {
+    title: "MidWay",
+    content: "Great war movie following the events after Pearl Harbor",
+    stars: 5 
+  }
+  ])

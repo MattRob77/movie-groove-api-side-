@@ -13,15 +13,11 @@ class MoviesController < ApplicationController
   end
 
   def create
-    @movie = Movie.new (movie_params)
-    @movie.user_id = current_user.id
-    if @movie.save
+    @movie = Movie.create(movie_params)
+
       render json: @movie
-    else
-        @movie.build_genre #Build/another word for new object
-      render :new
-    end
   end
+
 
   def update
     @movie = Movie.find(params[:id])
@@ -43,6 +39,6 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :description, :genre, :stars)
+    params.require(:data).permit(:id, :title, :description, :genre, :stars)
   end
 end

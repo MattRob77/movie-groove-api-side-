@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2020_01_14_202910) do
     t.string "title"
     t.string "description"
     t.string "genre"
+    t.string "image"
     t.integer "stars"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
