@@ -15,14 +15,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new (review_params)
-    @review.user_id = current_user.id
-    if @review.save
+    @review = Review.create(review_params)
+
       render json: @review
-    else
-        @review.build_genre #Build/another word for new object
-      render :new
-    end
   end
 
   def update
@@ -33,7 +28,7 @@ class ReviewsController < ApplicationController
   end
 
   def ratings
-    @movies = Movie.grouped_ratings #gives access to scope method
+    @review = Review.grouped_ratings #gives access to scope method
   end
 
   def destroy
@@ -45,7 +40,7 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit(:title, :content, :genre, :stars, :movie_id)
+    params.require(:data).permit(:id, :title, :content, :genre, :stars,)
   end
 
 end
