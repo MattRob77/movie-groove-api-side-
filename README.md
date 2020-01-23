@@ -1,3 +1,23 @@
+# Movie Groove_api side
+
+Javascript/Rails project for FlatIron School
+Movie Review web application
+
+## Getting Started
+To get the Rails server running locally:
+
+Clone this repo
+bundle install to install all req'd dependencies
+rails s to start the local server-localhost:3000
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+
+
 # Project Checklist
 
 [x]The application must be an HTML, CSS, and JavaScript frontend with a Rails API backend. All interactions between the client and the server must be handled asynchronously (AJAX) and use JSON as the communication format.
